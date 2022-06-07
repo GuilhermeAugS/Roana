@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}"></head>
+<body>
+    <div th:replace="~{base :: logo}"></div>
+<div class="container">
+    <div th:replace="~{base :: titulo('Novo Produto')}"></div>
+    <div class="card">
+        <form th:object="${requisicaoNovoProduto}" class="card-body" action="/produto/novo" method="POST">
+            <div class="form-group mb-3">
+                <label for="nomeProduto">Produto</label>
+                <input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do produto"/>
+                <small>Informe o nome do produto</small>
+                <div class="invalid-feedback" th:errors="*{nomeProduto}">
+                    Erros do nome do produto
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="precoDeCusto">Preço de Custo</label>
+                <input th:field="*{precoDeCusto}" th:errorclass="is-invalid" class="form-control" placeholder="Preço"/>
+                <div class="invalid-feedback" th:errors="*{precoDeCusto}">
+                    Erros do nome do preco de custo
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="quantidade">Quantidade</label>
+                <input th:field="*{quantidade}" th:errorclass="is-invalid" class="form-control" placeholder="Quantidade"/>
+                <small>Quantidade de produtos.</small>
+                <div class="invalid-feedback" th:errors="*{quantidade}">
+                    Erros da quantidade
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="urlImagem">Imagem</label>
+                <input th:field="*{urlImagem}" class="form-control" placeholder="Url da imagem"/>
+                <small>Copie a url de uma boa imagem do produto.</small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="descricao">Descrição</label>
+                <textarea th:field="*{descricao}" class="form-control" placeholder="Adicione detalhes importantes do produto"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

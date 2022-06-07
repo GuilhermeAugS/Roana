@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{base :: head}"></head>
+<body>
+    <div th:replace="~{base :: logo}"></div>
+    <div class="container">
+        <div th:replace="~{base :: titulo('Meus Produtos')}"></div>
+
+        <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="">Todos</a>
+            </div>
+            <a href="/produto/formulario"><button class="btn btn-outline-secondary">Novo</button></a>
+        </nav>
+
+        <div class="card mb-3" th:each="produtos : ${produtos}">
+            <div class="card-header" th:text="${produtos.nome}">Nome do produto</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-6 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">Quantidade: <span th:text="${produtos.quantidade}"></span></div>
+                                <div class="col-md-6">Preço de custo: <span th:if="${produtos.valorDeCusto} != null" th:text="${'R$ ' + #numbers.formatDecimal(produtos.valorDeCusto,2,'POINT',2,'COMMA')}"></span></div>
+                            </div>
+                        <div>Descrição:</div>
+                        <div>
+                            <textarea class="form-control" th:text="${produtos.descricao} " disabled>descrição do produto</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div><img class="img-thumbnail" th:src="${produtos.urlImagem}" src=""/></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
